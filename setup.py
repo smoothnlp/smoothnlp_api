@@ -31,6 +31,6 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     long_description="""\
-    投资事件(主要来源ITjuzi)  * 默认域名： service-m5j3awiv-1259459016.ap-shanghai.apigateway.myqcloud.com/release * 自定义域名： data.service.invest.smoothnlp.com/   # noqa: E501
+    SmoothNLP的数据接口的Python SDK
     """
 )
