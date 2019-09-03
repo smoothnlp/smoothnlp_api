@@ -14,17 +14,6 @@ from __future__ import absolute_import
 global SECRET_ID
 global SECRET_KEY
 
-SECRET_ID = None
-SECRET_KEY = None
-
-# import apis into sdk package
-from smoothnlp_api.api.investment_api import InvestmentApi
-
-# import ApiClient
-from smoothnlp_api.api_client import ApiClient
-from smoothnlp_api.configuration import Configuration
-# import models into sdk package
-
 import logging
 import hmac
 import base64
@@ -33,9 +22,6 @@ import hashlib
 
 logger = logging.getLogger("data_service_logger")
 
-def setKey(secrete_id,secret_key):
-    SECRET_ID = secrete_id
-    SECRET_KEY = secret_key
 
 def getSimpleSign(source, SecretId, SecretKey):
     GMT_FORMAT = '%a, %d %b %Y %H:%M:%S GMT'
@@ -53,4 +39,14 @@ def getSimpleSign(source, SecretId, SecretKey):
 
     return sign, dateTime
 
+# import apis into sdk package
+from smoothnlp_api.api.investment_api import InvestmentApi
+from smoothnlp_api.api.news_api import NewsApi
+
+# import ApiClient
+from smoothnlp_api.api_client import ApiClient
+from smoothnlp_api.configuration import Configuration
+# import models into sdk package
+
+config = Configuration()
 

@@ -88,13 +88,14 @@ class ApiClient(object):
         self.default_headers[header_name] = header_value
 
     def __call_api(
-            self, resource_path, method, path_params=None,
+            self, host, resource_path, method, path_params=None,
             query_params=None, header_params=None, body=None, post_params=None,
             files=None, response_type=None, auth_settings=None,
             _return_http_data_only=None, collection_formats=None,
             _preload_content=True, _request_timeout=None):
 
         config = self.configuration
+        self.configuration.host = host
 
         # header parameters
         header_params = header_params or {}
@@ -268,7 +269,7 @@ class ApiClient(object):
         else:
             return self.__deserialize_model(data, klass)
 
-    def call_api(self, resource_path, method,
+    def call_api(self, host ,resource_path, method,
                  path_params=None, query_params=None, header_params=None,
                  body=None, post_params=None, files=None,
                  response_type=None, auth_settings=None, _async=None,
@@ -311,14 +312,14 @@ class ApiClient(object):
             then the method will return the response directly.
         """
         if not _async:
-            return self.__call_api(resource_path, method,
+            return self.__call_api(host,resource_path, method,
                                    path_params, query_params, header_params,
                                    body, post_params, files,
                                    response_type, auth_settings,
                                    _return_http_data_only, collection_formats,
                                    _preload_content, _request_timeout)
         else:
-            thread = self.pool.apply_async(self.__call_api, (resource_path,
+            thread = self.pool.apply_async(self.__call_api, (host,resource_path,
                                            method, path_params, query_params,
                                            header_params, body,
                                            post_params, files,

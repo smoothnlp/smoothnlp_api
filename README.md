@@ -10,9 +10,10 @@ pip install smoothnlp_api
 **Set Up**
 ```python
 import smoothnlp_api
-smoothnlp_api.SECRET_ID = " YOUR Secret ID "  ## 配置秘钥
-smoothnlp_api.SECRET_KEY = " YOUR Secret KEY "
+smoothnlp_api.config.setAuth(" YOUR Secret ID ",  ## 配置秘钥
+                             " YOUR Secret KEY ")
 ```
+
 **Call API**
 ```python
 api_instance = smoothnlp_api.InvestmentApi()

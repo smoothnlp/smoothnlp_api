@@ -17,29 +17,28 @@ from smoothnlp_api.api_client import ApiClient
 import smoothnlp_api
 from smoothnlp_api import getSimpleSign
 
-SecretId = smoothnlp_api.SECRET_ID  # !!!!!!!在此填入SecretId!!!!!!!
-SecretKey = smoothnlp_api.SECRET_KEY  # !!!!!!!在此填入SecretKey!!!!!!
+# SecretId = smoothnlp_api.SECRET # !!!!!!!在此填入SecretKey!!!!!!
 
+HOST = "http://data.service.news.smoothnlp.com/release"
 
 class NewsApi(object):
-  
 
     def __init__(self, api_client=None):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
 
-    def get_query_company_news(self, company_kw, **kwargs):  # noqa: E501
-        
+    def get_company_news(self, company_kw, **kwargs):  # noqa: E501
+
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.get_query_company_news_with_http_info(company_kw, **kwargs)  # noqa: E501
+            return self.get_company_news_with_http_info(company_kw, **kwargs)  # noqa: E501
         else:
-            (data) = self.get_query_company_news_with_http_info(company_kw, **kwargs)  # noqa: E501
+            (data) = self.get_company_news_with_http_info(company_kw, **kwargs)  # noqa: E501
+            data = eval(data)
             return data
 
-    def get_query_company_news_with_http_info(self, company_kw, **kwargs):  # noqa: E501
-        
+    def get_company_news_with_http_info(self, company_kw, **kwargs):  # noqa: E501
 
         all_params = ['company_kw', 'end_date', 'limit', 'offset', 'start_date']  # noqa: E501
         all_params.append('async')
@@ -52,14 +51,15 @@ class NewsApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_query_company_news" % key
+                    " to method get_company_news" % key
                 )
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'company_kw' is set
         if ('company_kw' not in params or
                 params['company_kw'] is None):
-            raise ValueError("Missing the required parameter `company_kw` when calling `get_query_company_news`")  # noqa: E501
+            raise ValueError(
+                "Missing the required parameter `company_kw` when calling `get_company_news`")  # noqa: E501
 
         collection_formats = {}
 
@@ -94,22 +94,20 @@ class NewsApi(object):
         # Authentication setting
         auth_settings = []  # noqa: E501
 
-        
         # Source等从这里加入 header_params
         Source = 'AndriodApp'  # 可自定义
-        
-#####flag#####
-        #此api为秘钥对验证
-        sign, dateTime = getSimpleSign(Source, SecretId, SecretKey)
+
+        #####flag#####
+        # 此api为秘钥对验证
+        sign, dateTime = getSimpleSign(Source, smoothnlp_api.config.SECRET_ID, smoothnlp_api.config.SECRET_KEY)
         header_params['Date'] = dateTime
         header_params['Authorization'] = sign
 
-
-
-
         header_params['Source'] = Source
         return self.api_client.call_api(
-            '/query_company_news', 'GET',    #如果此API为ANY方法，则默认为GET方法，您可以通过修改第二个参数来变更您想使用的方法，如POST,PUT，HEAD等，注意:当存在body参数时，请不要使用HEAD或GET方法
+            HOST,
+            '/company_news', 'GET',
+            # 如果此API为ANY方法，则默认为GET方法，您可以通过修改第二个参数来变更您想使用的方法，如POST,PUT，HEAD等，注意:当存在body参数时，请不要使用HEAD或GET方法
             path_params,
             query_params,
             header_params,

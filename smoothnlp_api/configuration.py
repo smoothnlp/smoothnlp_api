@@ -42,6 +42,10 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
 
     def __init__(self):
         """Constructor"""
+        # Default Authentication Info
+        self.SECRET_ID = None
+        self.SECRET_KEY = None
+
         # Default Base url
         self.host = "http://service-m5j3awiv-1259459016.ap-shanghai.apigateway.myqcloud.com/release"
         # Temp file folder for downloading files
@@ -96,6 +100,10 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         self.proxy = None
         # Safe chars for path_param
         self.safe_chars_for_path_param = ''
+
+    def setAuth(self,secrete_id, secret_key):
+        self.SECRET_ID = secrete_id
+        self.SECRET_KEY = secret_key
 
     @property
     def logger_file(self):

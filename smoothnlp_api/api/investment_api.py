@@ -16,8 +16,11 @@ from smoothnlp_api.api_client import ApiClient
 import smoothnlp_api
 from smoothnlp_api import getSimpleSign
 
-SecretId = smoothnlp_api.SECRET_ID  # !!!!!!!在此填入SecretId!!!!!!!
-SecretKey = smoothnlp_api.SECRET_KEY  # !!!!!!!在此填入SecretKey!!!!!!
+
+# SecretId = smoothnlp_api.SECRET_ID  # !!!!!!!在此填入SecretId!!!!!!!
+# SecretKey = smoothnlp_api.SECRET_KEY  # !!!!!!!在此填入SecretKey!!!!!!
+
+HOST = "http://data.service.invest.smoothnlp.com/"
 
 class InvestmentApi(object):
   
@@ -95,13 +98,18 @@ class InvestmentApi(object):
         
 #####flag#####
         #此api为秘钥对验证
-        sign, dateTime = getSimpleSign(Source, smoothnlp_api.SECRET_ID, smoothnlp_api.SECRET_KEY)
+        sign, dateTime = getSimpleSign(Source, smoothnlp_api.config.SECRET_ID, smoothnlp_api.config.SECRET_KEY)
         header_params['Date'] = dateTime
         header_params['Authorization'] = sign
 
         header_params['Source'] = Source
+
+        print("HOST",HOST)
+
         return self.api_client.call_api(
-            '/investment', 'GET',    #如果此API为ANY方法，则默认为GET方法，您可以通过修改第二个参数来变更您想使用的方法，如POST,PUT，HEAD等，注意:当存在body参数时，请不要使用HEAD或GET方法
+            HOST,
+            '/investment',
+            'GET',    #如果此API为ANY方法，则默认为GET方法，您可以通过修改第二个参数来变更您想使用的方法，如POST,PUT，HEAD等，注意:当存在body参数时，请不要使用HEAD或GET方法
             path_params,
             query_params,
             header_params,
