@@ -155,7 +155,6 @@ class ApiClient(object):
         if _preload_content:
             # deserialize response data
             if response_type:
-                print("response type: ", response_type)
                 return_data = self.deserialize(response_data, response_type)
             else:
                 return_data = None

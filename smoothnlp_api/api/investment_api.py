@@ -104,8 +104,6 @@ class InvestmentApi(object):
 
         header_params['Source'] = Source
 
-        print("HOST",HOST)
-
         return self.api_client.call_api(
             HOST,
             '/investment',
