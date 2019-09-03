@@ -26,6 +26,7 @@ api_response = api_instance.get_investment(param) ## 返回结果为parse好的j
 
 
 ## APIs 接口详情
+
 #### 投资事件
 `smoothnlp_api.InvestmentApi()`[具体文档](http://doc.smoothnlp.com/web/#/p/4072db16dc854ef182561a8c75b6f6b6)
 
@@ -42,6 +43,8 @@ api_response = api_instance.get_investment(param) ## 返回结果为parse好的j
  **注:**
 * 目前支持的行业以及类目有: '金融', '旅游', '广告营销', '教育', '新工业', '本地生活', '医疗健康', '房产服务', '电子商务', '工具软件', '文娱传媒', '硬件', '社交网络', '农业', '体育运动', '游戏', '物流', '汽车交通', '企业服务'
 * 默认单次返回最多5条数据. 
+
+---------
 
 #### 新闻资讯
 `smoothnlp.smoothnlp_api.NewsApi()` [具体文档](http://doc.smoothnlp.com/web/#/p/e42fdc345ca760e9a9b207ea77a8ac3c)
@@ -61,6 +64,8 @@ api_response = api_instance.get_investment(param) ## 返回结果为parse好的j
 api_instance = smoothnlp_api.NewsApi()
 api_response = api_instance.get_company_news(company_kw="阿里巴巴")
 ```
+
+-------------
 
 # 声明
 > 如果你对以上数据API感兴趣, 我们对**学术研究**开放我们的数据, 欢迎联系:contact@smoothnlp.com; 我们将免费分配你对应接口的*秘钥*
