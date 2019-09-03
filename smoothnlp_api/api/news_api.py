@@ -1,13 +1,14 @@
 # coding: utf-8
 
 """
-    Investment
+    News
 
-    * 默认域名： service-m5j3awiv-1259459016.ap-shanghai.apigateway.myqcloud.com/release * 自定义域名： data.service.invest.smoothnlp.com/   # noqa: E501
+    资讯信息查询接口  * 默认域名： service-nl4at3t9-1259459016.ap-shanghai.apigateway.myqcloud.com/release * 自定义域名： data.service.news.smoothnlp.com/release   # noqa: E501
 """
 
 
 from __future__ import absolute_import
+
 
 # python 2 and python 3 compatibility library
 import six
@@ -19,7 +20,8 @@ from smoothnlp_api import getSimpleSign
 SecretId = smoothnlp_api.SECRET_ID  # !!!!!!!在此填入SecretId!!!!!!!
 SecretKey = smoothnlp_api.SECRET_KEY  # !!!!!!!在此填入SecretKey!!!!!!
 
-class InvestmentApi(object):
+
+class NewsApi(object):
   
 
     def __init__(self, api_client=None):
@@ -27,20 +29,19 @@ class InvestmentApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def get_investment(self, **kwargs):  # noqa: E501
+    def get_query_company_news(self, company_kw, **kwargs):  # noqa: E501
         
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.get_investment_with_http_info(**kwargs)  # noqa: E501
+            return self.get_query_company_news_with_http_info(company_kw, **kwargs)  # noqa: E501
         else:
-            (data) = self.get_investment_with_http_info(**kwargs)  # noqa: E501
-            data = eval(data)
+            (data) = self.get_query_company_news_with_http_info(company_kw, **kwargs)  # noqa: E501
             return data
 
-    def get_investment_with_http_info(self, **kwargs):  # noqa: E501
+    def get_query_company_news_with_http_info(self, company_kw, **kwargs):  # noqa: E501
         
 
-        all_params = ['cate1', 'cate2', 'company_name', 'product_name', 'year']  # noqa: E501
+        all_params = ['company_kw', 'end_date', 'limit', 'offset', 'start_date']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -51,26 +52,30 @@ class InvestmentApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_investment" % key
+                    " to method get_query_company_news" % key
                 )
             params[key] = val
         del params['kwargs']
+        # verify the required parameter 'company_kw' is set
+        if ('company_kw' not in params or
+                params['company_kw'] is None):
+            raise ValueError("Missing the required parameter `company_kw` when calling `get_query_company_news`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'cate1' in params:
-            query_params.append(('cate1', params['cate1']))  # noqa: E501
-        if 'cate2' in params:
-            query_params.append(('cate2', params['cate2']))  # noqa: E501
-        if 'company_name' in params:
-            query_params.append(('company_name', params['company_name']))  # noqa: E501
-        if 'product_name' in params:
-            query_params.append(('product_name', params['product_name']))  # noqa: E501
-        if 'year' in params:
-            query_params.append(('year', params['year']))  # noqa: E501
+        if 'company_kw' in params:
+            query_params.append(('company_kw', params['company_kw']))  # noqa: E501
+        if 'end_date' in params:
+            query_params.append(('end_date', params['end_date']))  # noqa: E501
+        if 'limit' in params:
+            query_params.append(('limit', params['limit']))  # noqa: E501
+        if 'offset' in params:
+            query_params.append(('offset', params['offset']))  # noqa: E501
+        if 'start_date' in params:
+            query_params.append(('start_date', params['start_date']))  # noqa: E501
 
         header_params = {}
 
@@ -80,7 +85,7 @@ class InvestmentApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['HTML'])  # noqa: E501
+            ['JSON'])  # noqa: E501
 
         # HTTP header `Content-Type`
         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
@@ -95,20 +100,23 @@ class InvestmentApi(object):
         
 #####flag#####
         #此api为秘钥对验证
-        sign, dateTime = getSimpleSign(Source, smoothnlp_api.SECRET_ID, smoothnlp_api.SECRET_KEY)
+        sign, dateTime = getSimpleSign(Source, SecretId, SecretKey)
         header_params['Date'] = dateTime
         header_params['Authorization'] = sign
 
+
+
+
         header_params['Source'] = Source
         return self.api_client.call_api(
-            '/investment', 'GET',    #如果此API为ANY方法，则默认为GET方法，您可以通过修改第二个参数来变更您想使用的方法，如POST,PUT，HEAD等，注意:当存在body参数时，请不要使用HEAD或GET方法
+            '/query_company_news', 'GET',    #如果此API为ANY方法，则默认为GET方法，您可以通过修改第二个参数来变更您想使用的方法，如POST,PUT，HEAD等，注意:当存在body参数时，请不要使用HEAD或GET方法
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="str",  # noqa: E501
+            response_type='str',  # noqa: E501
             auth_settings=auth_settings,
             _async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),

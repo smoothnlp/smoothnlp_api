@@ -26,11 +26,31 @@ from smoothnlp_api.configuration import Configuration
 # import models into sdk package
 
 import logging
+import hmac
+import base64
+import datetime
+import hashlib
 
 logger = logging.getLogger("data_service_logger")
 
 def setKey(secrete_id,secret_key):
     SECRET_ID = secrete_id
     SECRET_KEY = secret_key
+
+def getSimpleSign(source, SecretId, SecretKey):
+    GMT_FORMAT = '%a, %d %b %Y %H:%M:%S GMT'
+    if SecretId ==  "" or SecretKey == "" or SecretKey is None or SecretId is None:
+        logger.fatal("请先设置 SecretId/SecretKey 对，再计算签名")
+        raise ConnectionError(" Invalid Secret ID or Key ")
+    dateTime = datetime.datetime.utcnow().strftime(GMT_FORMAT)  # 这里，用当前时间来生成 datetime 对象
+    auth = "hmac id=\"" + SecretId + "\", algorithm=\"hmac-sha1\", headers=\"date source\", signature=\""
+    signStr = "date: " + dateTime + "\n" + "source: " + source
+
+    sign = hmac.new(SecretKey.encode('utf-8'), signStr.encode("utf-8"), hashlib.sha1).digest()
+    sign = base64.b64encode(sign)
+    sign = sign.decode('utf-8')
+    sign = auth + sign + "\""
+
+    return sign, dateTime
 
 
