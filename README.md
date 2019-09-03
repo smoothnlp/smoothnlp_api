@@ -2,7 +2,7 @@
 公共数据API服务
 
 ## Install 安装
-```python
+```bash
 pip install smoothnlp_api
 ```
 
@@ -16,6 +16,7 @@ smoothnlp_api.config.setAuth(" YOUR Secret ID ",  ## 配置秘钥
 
 **Call API**
 ```python
+## 创建对应的 API Instance
 api_instance = smoothnlp_api.InvestmentApi()
 
 ## 配置调用Query参数
@@ -53,11 +54,14 @@ api_response = api_instance.get_investment(param) ## 返回结果为parse好的j
  **start_date** | **str**| 开始日期 | 否 | 2019-06-01
  **end_date** | **str**| 接入日期 | 否 | 2020-12-30
  **offset** | **int**| 开始条数 | 否 | 
- **limit** | **int**|  | 否 | 
+ **limit** | **int**| 返回条数 | 否 | 
  
  **示例**
 ```python
 api_instance = smoothnlp_api.NewsApi()
 api_response = api_instance.get_company_news(company_kw="阿里巴巴")
 ```
+
+# 声明
+> 如果你对以上数据API感兴趣, 我们对**学术研究**开放我们的数据, 欢迎联系:contact@smoothnlp.com; 商务合作请联系 business@smoothnlp.com
 
