@@ -63,5 +63,7 @@ api_response = api_instance.get_company_news(company_kw="阿里巴巴")
 ```
 
 # 声明
-> 如果你对以上数据API感兴趣, 我们对**学术研究**开放我们的数据, 欢迎联系:contact@smoothnlp.com; 商务合作请联系 business@smoothnlp.com
+> 如果你对以上数据API感兴趣, 我们对**学术研究**开放我们的数据, 欢迎联系:contact@smoothnlp.com; 我们将免费分配你对应接口的*秘钥*
+
+> 商务合作请联系 business@smoothnlp.com
 
