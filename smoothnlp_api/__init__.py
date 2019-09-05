@@ -42,6 +42,7 @@ def getSimpleSign(source, SecretId, SecretKey):
 # import apis into sdk package
 from smoothnlp_api.api.investment_api import InvestmentApi
 from smoothnlp_api.api.news_api import NewsApi
+from smoothnlp_api.api.company_api import CompanyApi
 
 # import ApiClient
 from smoothnlp_api.api_client import ApiClient
