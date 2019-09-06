@@ -8,6 +8,10 @@
 
 
 from setuptools import setup, find_packages  # noqa: H301
+import os
+
+rootdir = os.path.abspath(os.path.dirname(__file__))
+long_description = open(os.path.join(rootdir, 'README.md')).read()
 
 NAME = "smoothnlp_api"
 VERSION = "0.1.4"
@@ -30,7 +34,5 @@ setup(
     install_requires=REQUIRES,
     packages=find_packages(),
     include_package_data=True,
-    long_description="""\
-    SmoothNLP的数据接口的Python SDK
-    """
+    long_description=long_description
 )
