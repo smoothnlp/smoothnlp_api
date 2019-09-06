@@ -69,7 +69,7 @@ api_response = api_instance.get_investment(param) ## 返回结果为parse好的j
 -------------
 
 #### 企业工商
-`smoothnlp_api.CompanyApi()` [具体文档](http://doc.smoothnlp.com/web/#/p/c18fa97554fd4220bee162e1f4d948f8)
+`smoothnlp_api.CompanyApi()` | [具体文档](http://doc.smoothnlp.com/web/#/p/c18fa97554fd4220bee162e1f4d948f8)
 
 **参数**
 
