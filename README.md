@@ -28,7 +28,7 @@ api_response = api_instance.get_investment(param) ## 返回结果为parse好的j
 ## APIs 接口详情
 
 #### 投资事件
-`smoothnlp_api.InvestmentApi()`[具体文档](http://doc.smoothnlp.com/web/#/p/4072db16dc854ef182561a8c75b6f6b6)
+`smoothnlp_api.InvestmentApi()`[具体文档](http://doc.smoothnlp.com/web/#/p/4072db16dc854ef182561a8c75b6f6b6) | [购买](https://market.cloud.tencent.com/preview/16168)
 
 **参数:** 
 
@@ -47,7 +47,7 @@ api_response = api_instance.get_investment(param) ## 返回结果为parse好的j
 ---------
 
 #### 新闻资讯
-`smoothnlp_api.NewsApi()` [具体文档](http://doc.smoothnlp.com/web/#/p/e42fdc345ca760e9a9b207ea77a8ac3c)
+`smoothnlp_api.NewsApi()` | [具体文档](http://doc.smoothnlp.com/web/#/p/e42fdc345ca760e9a9b207ea77a8ac3c) | [购买](https://market.cloud.tencent.com/products/15366)
 
 **参数:**
 
