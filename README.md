@@ -3,7 +3,7 @@
 
 ## Install 安装
 ```bash
-pip install smoothnlp_api>=0.1.4
+pip install smoothnlp_api>=0.1.5
 ```
 
 ## Usage 使用
