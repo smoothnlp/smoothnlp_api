@@ -106,7 +106,8 @@ class NewsApi(object):
         header_params['Source'] = Source
         return self.api_client.call_api(
             HOST,
-            '/news/company', 'GET',
+            '/news/company',
+            'GET',
             # 如果此API为ANY方法，则默认为GET方法，您可以通过修改第二个参数来变更您想使用的方法，如POST,PUT，HEAD等，注意:当存在body参数时，请不要使用HEAD或GET方法
             path_params,
             query_params,

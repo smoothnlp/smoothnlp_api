@@ -268,7 +268,7 @@ class ApiClient(object):
         else:
             return self.__deserialize_model(data, klass)
 
-    def call_api(self, host ,resource_path, method,
+    def call_api(self, host,resource_path, method,
                  path_params=None, query_params=None, header_params=None,
                  body=None, post_params=None, files=None,
                  response_type=None, auth_settings=None, _async=None,
@@ -333,6 +333,7 @@ class ApiClient(object):
                 _request_timeout=None):
         """Makes the HTTP request using RESTClient."""
         if method == "GET":
+
             return self.rest_client.GET(url,
                                         query_params=query_params,
                                         _preload_content=_preload_content,
@@ -458,7 +459,7 @@ class ApiClient(object):
 
         accepts = [x.lower() for x in accepts]
 
-        if 'application/json' in accepts:
+        if 'application/json' in accepts or "json" in accepts:
             return 'application/json'
         else:
             return ', '.join(accepts)

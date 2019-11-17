@@ -157,6 +157,7 @@ class RESTClientObject(object):
                         request_body = json.dumps(body)
                     r = self.pool_manager.request(
                         method, url,
+                        method, url,
                         body=request_body,
                         preload_content=_preload_content,
                         timeout=timeout,
@@ -219,6 +220,7 @@ class RESTClientObject(object):
 
             # log response body
             logger.debug("response body: %s", r.data)
+
 
         if not 200 <= r.status <= 299 and r.status<500:
             raise ApiException(http_resp=r)

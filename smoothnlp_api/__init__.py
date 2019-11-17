@@ -22,32 +22,36 @@ import hashlib
 
 logger = logging.getLogger("data_service_logger")
 
+from smoothnlp_api.configuration import Configuration
+config = Configuration()
 
-def getSimpleSign(source, SecretId, SecretKey):
+def getSimpleSign(source, SecretId = None, SecretKey=None):
     GMT_FORMAT = '%a, %d %b %Y %H:%M:%S GMT'
-    if SecretId ==  "" or SecretKey == "" or SecretKey is None or SecretId is None:
+    if SecretId ==  "" or SecretKey == "" or config.SECRET_KEY is None or config.SECRET_ID is None:
         logger.fatal("请先设置 SecretId/SecretKey 对，再计算签名")
         raise ConnectionError(" Invalid Secret ID or Key ")
     dateTime = datetime.datetime.utcnow().strftime(GMT_FORMAT)  # 这里，用当前时间来生成 datetime 对象
-    auth = "hmac id=\"" + SecretId + "\", algorithm=\"hmac-sha1\", headers=\"date source\", signature=\""
+    auth = "hmac id=\"" + config.SECRET_ID + "\", algorithm=\"hmac-sha1\", headers=\"date source\", signature=\""
     signStr = "date: " + dateTime + "\n" + "source: " + source
 
-    sign = hmac.new(SecretKey.encode('utf-8'), signStr.encode("utf-8"), hashlib.sha1).digest()
+    sign = hmac.new(config.SECRET_KEY.encode('utf-8'), signStr.encode("utf-8"), hashlib.sha1).digest()
     sign = base64.b64encode(sign)
     sign = sign.decode('utf-8')
     sign = auth + sign + "\""
 
     return sign, dateTime
 
+
+
 # import apis into sdk package
-from smoothnlp_api.api.investment_api import InvestmentApi
-from smoothnlp_api.api.news_api import NewsApi
-from smoothnlp_api.api.company_api import CompanyApi
+from .api.investment_api import InvestmentApi
+from .api.news_api import NewsApi
+from .api.company_api import CompanyApi
+from .api.xiuwen_api import XiuwenApi
 
 # import ApiClient
 from smoothnlp_api.api_client import ApiClient
-from smoothnlp_api.configuration import Configuration
+
 # import models into sdk package
 
-config = Configuration()
 
