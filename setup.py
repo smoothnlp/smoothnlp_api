@@ -14,7 +14,7 @@ rootdir = os.path.abspath(os.path.dirname(__file__))
 long_description = open(os.path.join(rootdir, 'README.md')).read()
 
 NAME = "smoothnlp_api"
-VERSION = "0.1.5"
+VERSION = "0.2.0"
 # To install the library, run the following
 #
 # python setup.py install
