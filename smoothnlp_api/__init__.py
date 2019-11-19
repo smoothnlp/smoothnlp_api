@@ -47,6 +47,7 @@ def getSimpleSign(source, SecretId = None, SecretKey=None):
 from .api.investment_api import InvestmentApi
 from .api.news_api import NewsApi
 from .api.company_api import CompanyApi
+from .api.xiuwen_local_api import Xiuwen_Local_Api
 from .api.xiuwen_api import XiuwenApi
 
 # import ApiClient

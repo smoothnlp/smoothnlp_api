@@ -28,10 +28,10 @@ from ..api import evaldata
 SecretId = smoothnlp_api.config.SECRET_ID
 SecretKey = smoothnlp_api.config.SECRET_KEY
 
-HOST = "http://data.service.xiuwen.smoothnlp.com"
+HOST = "http://api.smoothnlp.com"
 
 
-class XiuwenApi(object):
+class Xiuwen_Local_Api(object):
 
     def __init__(self, api_client=None):
         if api_client is None:
